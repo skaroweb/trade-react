@@ -1,0 +1,36 @@
+.hero-section__social > div {
+  margin-right: 15px;
+  cursor: pointer;
+}
+.hero-section__image {
+  text-align: center;
+}
+.hero-section__image img.img-fluid {
+  height: 390px;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+}
+.hero-section__social > div > i::before {
+  background: #008000;
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 15px;
+}
+
+.hero-section__social {
+  display: flex;
+  margin-bottom: 25px;
+}
+
+@media (max-width: 768px) {
+  .hero-section__image img.img-fluid {
+    height: 180px;
+  }
+}

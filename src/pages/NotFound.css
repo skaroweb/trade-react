@@ -1,0 +1,37 @@
+.NotFound .btn {
+  z-index: 1;
+  overflow: hidden;
+  background: transparent;
+  position: relative;
+  padding: 8px 50px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1em;
+  letter-spacing: 2px;
+  transition: 0.2s ease;
+  font-weight: bold;
+  margin: 5px 0px;
+}
+.NotFound .btn.green {
+  border: 4px solid #008000;
+  color: #000;
+}
+.NotFound .btn.green:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0%;
+  height: 100%;
+  background: #008000;
+  z-index: -1;
+  transition: 0.2s ease;
+}
+.NotFound .btn.green:hover {
+  color: #fff;
+  background: #008000;
+  transition: 0.2s ease;
+}
+.NotFound .btn.green:hover:before {
+  width: 100%;
+}

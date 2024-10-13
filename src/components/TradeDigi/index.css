@@ -1,0 +1,36 @@
+h2.sect-heading {
+  font-weight: bold;
+}
+.tradedigi {
+  background-color: #fff;
+  padding: 40px;
+}
+.tradedigi p {
+  margin: 25px 0px;
+}
+.tradedigisec {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  text-align: center;
+  grid-gap: 30px;
+}
+.tradedigidesc {
+  font-size: 20px;
+}
+.tradedigisvg {
+  background-color: #d9f0dbdb;
+  display: inline-block;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 15px 0px;
+  box-shadow: 10px -10px #9edaa51f;
+}
+.tradedigisvg svg {
+  width: 30px;
+  fill: #43a048;
+}
+@media (max-width: 768px) {
+  .tradedigi {
+    padding: 15px;
+  }
+}
