@@ -5,6 +5,7 @@ import { useLocation, Link } from "react-router-dom"; // Import useLocation
 import axios from "axios";
 
 import "./index.css";
+import PhoneInput from "react-phone-input-2";
 
 function Sidebar({ headingText, withoutsticky }) {
   const location = useLocation(); // Get the current location
@@ -22,23 +23,18 @@ function Sidebar({ headingText, withoutsticky }) {
     promotions: false,
     terms: false,
   });
+  const handlePhoneChange = (value, country) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      phone: `+${value}`, // Store full phone number with plus sign
+    }));
 
-  useEffect(() => {
-    const fetchCountryData = async () => {
-      try {
-        const response = await fetch("https://ipapi.co/json");
-        const data = await response.json();
-        const callingCode = data.country_calling_code || ""; // Fallback if no code is found
-        const countryName = data.country_name || ""; // Fallback if no country name is found
-        const countryCode = data.country || ""; // Get the ISO country code (e.g., "IN")
-        setCountryData({ callingCode, countryName, countryCode });
-      } catch (error) {
-        console.error("Error fetching country data:", error);
-      }
-    };
-
-    fetchCountryData();
-  }, []);
+    setCountryData({
+      callingCode: `+${country.dialCode}`, // Include '+' for the calling code
+      countryName: country.name,
+      countryCode: country.countryCode, // or country.cca2
+    });
+  };
   const apiUrl = process.env.REACT_APP_PUBLIC_URL;
 
   //console.log(apiUrl);
@@ -68,6 +64,8 @@ function Sidebar({ headingText, withoutsticky }) {
       country_code: countryData.countryCode, // Add the country code to the payload
       provider: urlSegment, // Use the last segment of the pathname
     };
+
+    console.log(payload);
 
     try {
       const token = process.env.REACT_APP_TOKEN; // Replace with your actual token
@@ -161,7 +159,12 @@ function Sidebar({ headingText, withoutsticky }) {
                 onChange={handleChange}
               />
             </p>
-            <div className="country_code_phone">
+            <PhoneInput
+              className="country_code_phone"
+              value={formData.phone}
+              onChange={handlePhoneChange}
+            />
+            {/* <div className="country_code_phone">
               <input
                 className="form__input--code"
                 type="text"
@@ -179,7 +182,7 @@ function Sidebar({ headingText, withoutsticky }) {
                 value={formData.phone}
                 onChange={handleChange}
               />
-            </div>
+            </div> */}
             <p>
               <input aria-label="Suscribirme" type="submit" value="Start now" />
             </p>

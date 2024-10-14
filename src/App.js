@@ -11,6 +11,7 @@ import Disclamer from "./pages/Disclamer";
 import Safety from "./pages/Safety";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import NotFound from "./pages/NotFound";
+import "react-phone-input-2/lib/style.css";
 
 function App() {
   return (

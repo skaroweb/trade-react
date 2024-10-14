@@ -258,3 +258,7 @@ aside.sidebar .widget.widget_mc4wp_form_widget .title:after {
 .asideterms {
   color: #008000;
 }
+.country_code_phone input[type="tel"] {
+  text-indent: 40px;
+  height: unset;
+}
