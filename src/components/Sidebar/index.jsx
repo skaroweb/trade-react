@@ -78,10 +78,7 @@ function Sidebar({ headingText, withoutsticky }) {
       });
 
       console.log("Success:", response.data);
-      // Show success alert
-      alert(
-        "Congratulations! Your registration was successful! Our representative will contact you in an hour, please be aware and accept the call. Now, you will be redirected to the recommended broker."
-      );
+
       // Clear form data
       setFormData({
         Firstname: "",
@@ -91,9 +88,17 @@ function Sidebar({ headingText, withoutsticky }) {
         promotions: false,
         terms: false,
       });
-      // Redirect to a different URL after the alert is dismissed
-      window.location.href =
-        "https://academy-center.com/mtm15_thank-you-page-en/"; // Replace with the desired URL
+      if (urlSegment !== "iframe") {
+        // Show success alert
+        alert(
+          "Congratulations! Your registration was successful! Our representative will contact you in an hour, please be aware and accept the call. Now, you will be redirected to the recommended broker."
+        );
+        // Redirect to a different URL after the alert is dismissed
+        window.location.href =
+          "https://academy-center.com/mtm15_thank-you-page-en/"; // Replace with the desired URL
+      } else {
+        toast.success("Your registration was successful.");
+      }
     } catch (error) {
       if (
         error.response &&
@@ -223,7 +228,7 @@ function Sidebar({ headingText, withoutsticky }) {
           </div>
         </form>
       </div>
-      <ToastContainer autoClose={1000} />
+      <ToastContainer />
     </aside>
   );
 }
