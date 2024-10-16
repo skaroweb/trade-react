@@ -60,12 +60,13 @@ function Sidebar({ headingText, withoutsticky }) {
       ...formData,
       // phone: fullPhoneNumber, // Send the concatenated phone number
       phonecc: countryData.callingCode,
-      countryName: countryData.countryName,
-      country_code: countryData.countryCode, // Add the country code to the payload
-      provider: urlSegment, // Use the last segment of the pathname
+      // countryName: countryData.countryName,
+      // country_code: countryData.countryCode, // Add the country code to the payload
+      //provider: urlSegment, // Use the last segment of the pathname
+      provider: urlSegment === "iframe" ? "softAI" : urlSegment, // Use 'manualText' if urlSegment is 'iframe'
     };
 
-    console.log(payload);
+    // console.log(payload);
 
     try {
       const token = process.env.REACT_APP_TOKEN; // Replace with your actual token

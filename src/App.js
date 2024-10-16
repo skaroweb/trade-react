@@ -12,6 +12,7 @@ import Safety from "./pages/Safety";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import NotFound from "./pages/NotFound";
 import "react-phone-input-2/lib/style.css";
+import Iframe from "./pages/Iframe";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route exact path="/safety" element={<Safety />} />
           <Route path="*" element={<NotFound />} />
         </Route>
+        <Route exact path="/iframe" element={<Iframe />} />
       </Routes>
     </div>
   );
