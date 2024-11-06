@@ -13,12 +13,16 @@ import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import NotFound from "./pages/NotFound";
 import "react-phone-input-2/lib/style.css";
 import Iframe from "./pages/Iframe";
+import Loginpage from "./pages/Loginpage";
+import Dashboard from "./pages/dashboard";
 
 function App() {
   return (
     <div>
       <ScrollToTop />
       <Routes>
+        <Route exact path="/login" element={<Loginpage />} />
+        <Route exact path="/dashboard" element={<Dashboard />} />
         <Route path="/" element={<DashboardLayout />}>
           <Route index exact element={<Homepage />} />
           <Route exact path="/provider/:id" element={<InnerPage />} />
