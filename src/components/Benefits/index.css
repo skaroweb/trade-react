@@ -1,0 +1,53 @@
+.trade-section {
+  color: #000;
+  background-color: transparent;
+  margin-top: 60px;
+}
+
+.trade-items {
+  grid-column-gap: 1.7%;
+  grid-row-gap: 1.7%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.trade-item {
+  background-color: #fff;
+  border: 1px #828282;
+  margin-bottom: 50px;
+  padding: 20px;
+  position: relative;
+  text-align: center;
+  width: 32.1%;
+  border-radius: 0px;
+  box-shadow: 0 0 #0000, 0 0 #0000, 0 1px 3px 0 #0000001a,
+    0 1px 2px -1px #0000001a;
+}
+
+.trade-item-title {
+  color: #54505f;
+  font-size: 24px;
+  line-height: 1.4em;
+  margin-bottom: 20px;
+  margin-top: 0;
+  text-transform: uppercase;
+}
+
+.trade-item-num {
+  align-items: center;
+  background-color: #008000;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  font-size: 30px;
+  font-weight: 700;
+  height: 45px;
+  justify-content: center;
+  margin-bottom: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 45px;
+  position: relative;
+  width: 45px;
+  margin-top: -45px;
+}

@@ -1,8 +1,10 @@
+import TradeImage from "../TradeImage";
 import "./index.css";
 import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <>
+      <TradeImage />
       <footer id="footer" className="footer">
         <div className="footer-top">
           <div className="container">

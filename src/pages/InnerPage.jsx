@@ -8,8 +8,12 @@ import RiskAdvisor from "../components/RiskAdvisor";
 import KeyFeature from "../components/KeyFeature";
 import Sidebar from "../components/Sidebar";
 import TradeDigi from "../components/TradeDigi";
+import Testimonials from "../components/Testimonials";
 import "./Innerpage.css";
 import NotFound from "./NotFound";
+import Team from "../components/Team";
+import Benefits from "../components/Benefits";
+import FAQ from "../components/FAQ";
 const data = {
   quantum: {
     title: "Trade Confidently with Quantum Code Ai",
@@ -126,9 +130,15 @@ const Innerpage = () => {
             </div>
           </div>
 
-          <RiskAdvisor />
           <PopupForm modalTitle={pathName} />
         </div>
+        <Benefits />
+        <Testimonials />
+        {/* <FAQ /> */}
+        {/* <Team /> */}
+        {/* <div className="container">
+          <RiskAdvisor />
+        </div> */}
       </HelmetProvider>
     </>
   );

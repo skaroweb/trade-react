@@ -1,0 +1,26 @@
+.TradeImage {
+  background-color: #000;
+  background-image: url(https://coinswitch.co/_next/static/media/grid-black3.07594ae6.svg);
+  padding-top: 20px;
+}
+
+.TradeImage img {
+  width: 700px;
+  margin: auto;
+  display: block;
+}
+div.Home_download_caption__qqqqi {
+  text-align: center;
+  color: #fff;
+  padding-bottom: 20px;
+  font-size: 50px;
+}
+.Home_download_caption_green__ZNiyr {
+  color: #43a048;
+  font-weight: 900;
+}
+@media (max-width: 768px) {
+  .TradeImage img {
+    width: 100%;
+  }
+}

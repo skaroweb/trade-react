@@ -10,7 +10,7 @@ const DashboardLayout = ({ children }) => {
     <>
       <Header />
       <div className="main">
-        <div className="container">
+        <div className="">
           <Outlet />
         </div>
       </div>
