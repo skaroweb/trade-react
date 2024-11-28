@@ -1,9 +1,18 @@
 .team_section {
-  text-align: center;
-  background-color: rgb(241 245 249 / 1);
   color: #000;
+  text-align: center;
+  background-image: linear-gradient(95deg, #846cff 0%, #7660e4 100%);
+  padding-top: 20px;
+  padding-bottom: 30px;
 }
-
+.team_section > div {
+  background-image: url(https://capitalise.ai/wp-content/uploads/2021/07/Quote-1.svg);
+  background-position: 88% -100px;
+  background-repeat: no-repeat;
+  background-size: auto;
+  opacity: 1;
+  transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
+}
 .team_section .heading_container {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
