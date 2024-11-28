@@ -51,3 +51,8 @@
   width: 45px;
   margin-top: -45px;
 }
+@media (max-width: 768px) {
+  .trade-item {
+    width: 100%;
+  }
+}

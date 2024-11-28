@@ -134,7 +134,7 @@ const Innerpage = () => {
         </div>
         <Benefits />
         <Testimonials />
-        {/* <FAQ /> */}
+        <FAQ />
         {/* <Team /> */}
         {/* <div className="container">
           <RiskAdvisor />
