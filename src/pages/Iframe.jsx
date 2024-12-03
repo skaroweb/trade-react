@@ -1,10 +1,10 @@
-import Sidebar from "../components/Sidebar";
+import Sidebar3 from "../components/Sidebar3";
 import "./iframe.css";
 
 function Iframe() {
   return (
     <>
-      <Sidebar headingText="Open Your Free Account" />
+      <Sidebar3 headingText="Open Your Free Account" provider_name="quantum" />
     </>
   );
 }

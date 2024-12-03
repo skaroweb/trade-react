@@ -13,6 +13,10 @@ import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import NotFound from "./pages/NotFound";
 import "react-phone-input-2/lib/style.css";
 import Iframe from "./pages/Iframe";
+import Iframe2 from "./pages/Iframe2";
+import Iframe3 from "./pages/Iframe3";
+import Iframe4 from "./pages/Iframe4";
+import Iframe5 from "./pages/Iframe5";
 import Loginpage from "./pages/Loginpage";
 import Dashboard from "./pages/dashboard";
 
@@ -35,6 +39,10 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Route>
         <Route exact path="/iframe" element={<Iframe />} />
+        <Route exact path="/iframe2" element={<Iframe2 />} />
+        <Route exact path="/iframe3" element={<Iframe3 />} />
+        <Route exact path="/iframe4" element={<Iframe4 />} />
+        <Route exact path="/iframe5" element={<Iframe5 />} />
       </Routes>
     </div>
   );
