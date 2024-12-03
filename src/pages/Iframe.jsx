@@ -4,7 +4,10 @@ import "./iframe.css";
 function Iframe() {
   return (
     <>
-      <Sidebar3 headingText="Open Your Free Account" provider_name="quantum" />
+      <Sidebar3
+        headingText="Open Your Free Quantum Code Ai Account"
+        provider_name="quantum"
+      />
     </>
   );
 }

@@ -4,7 +4,10 @@ import "./iframe.css";
 function Iframe5() {
   return (
     <>
-      <Sidebar3 headingText="Open Your Free Account" provider_name="capital" />
+      <Sidebar3
+        headingText="Open Your Free Capital Code Ai Account"
+        provider_name="capital"
+      />
     </>
   );
 }

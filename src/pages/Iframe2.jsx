@@ -5,7 +5,7 @@ function Iframe2() {
   return (
     <>
       <Sidebar3
-        headingText="Open Your Free Account"
+        headingText="Open Your Free Activtrades Code Ai Account"
         provider_name="activtrades"
       />
     </>

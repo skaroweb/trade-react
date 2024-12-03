@@ -4,7 +4,10 @@ import "./iframe.css";
 function Iframe3() {
   return (
     <>
-      <Sidebar3 headingText="Open Your Free Account" provider_name="ava" />
+      <Sidebar3
+        headingText="Open Your Free Ava Code Ai Account"
+        provider_name="ava"
+      />
     </>
   );
 }

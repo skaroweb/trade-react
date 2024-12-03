@@ -4,7 +4,10 @@ import "./iframe.css";
 function Iframe4() {
   return (
     <>
-      <Sidebar3 headingText="Open Your Free Account" provider_name="plus500" />
+      <Sidebar3
+        headingText="Open Your Free Plus500 Code Ai Account"
+        provider_name="plus500"
+      />
     </>
   );
 }

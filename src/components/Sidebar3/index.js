@@ -125,7 +125,6 @@ function Sidebar3({ headingText, withoutsticky, provider_name }) {
         id="mc4wp_form_widget-28"
         className="widget widget_mc4wp_form_widget"
       >
-        <div className="title">{headingText}</div>
         <form
           id="mc4wp-form-1"
           className="mc4wp-form mc4wp-form-27048"
