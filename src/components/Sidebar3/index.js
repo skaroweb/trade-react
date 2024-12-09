@@ -192,22 +192,7 @@ function Sidebar3({ headingText, withoutsticky, provider_name }) {
             <p>
               <input aria-label="Suscribirme" type="submit" value="Start now" />
             </p>
-            <p>
-              <label>
-                <input
-                  className="checkbox_color"
-                  aria-label="promotions"
-                  name="promotions"
-                  type="checkbox"
-                  value="1"
-                  checked={formData.promotions}
-                  onChange={handleChange}
-                />
-                I would like to receive product updates, promotions, special
-                offers, event details, news, and services announcements by
-                E-mail and SMS.
-              </label>
-            </p>
+
             <p>
               <label>
                 <input
