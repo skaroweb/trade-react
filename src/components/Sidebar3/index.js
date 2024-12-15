@@ -58,15 +58,15 @@ function Sidebar3({ headingText, withoutsticky, provider_name }) {
     };
 
     try {
-      // const token = process.env.REACT_APP_TOKEN;
-      // const response = await axios.post(`${apiUrl}/api/users`, payload, {
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     Authorization: `Bearer ${token}`, // Include the Bearer token
-      //   },
-      // });
+      const token = process.env.REACT_APP_TOKEN;
+      const response = await axios.post(`${apiUrl}/api/users`, payload, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Include the Bearer token
+        },
+      });
 
-      // console.log("Success:", response.data);
+      console.log("Success:", response.data);
 
       // Hide form and show success message
       setIsFormSubmitted(true);
