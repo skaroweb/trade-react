@@ -58,15 +58,15 @@ function Sidebar3({ headingText, withoutsticky, provider_name }) {
     };
 
     try {
-      const token = process.env.REACT_APP_TOKEN;
-      const response = await axios.post(`${apiUrl}/api/users`, payload, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // Include the Bearer token
-        },
-      });
+      // const token = process.env.REACT_APP_TOKEN;
+      // const response = await axios.post(`${apiUrl}/api/users`, payload, {
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     Authorization: `Bearer ${token}`, // Include the Bearer token
+      //   },
+      // });
 
-      console.log("Success:", response.data);
+      // console.log("Success:", response.data);
 
       // Hide form and show success message
       setIsFormSubmitted(true);
@@ -75,6 +75,7 @@ function Sidebar3({ headingText, withoutsticky, provider_name }) {
       alert(error.response?.data?.message || "An unexpected error occurred.");
     }
   };
+  console.log(isFormSubmitted);
 
   // Inline style based on the withoutsticky prop
   const sidebarStyle = withoutsticky
@@ -85,7 +86,9 @@ function Sidebar3({ headingText, withoutsticky, provider_name }) {
     <aside className="sidebar" style={sidebarStyle}>
       <div
         id="mc4wp_form_widget-28"
-        className="widget widget_mc4wp_form_widget"
+        className={`widget widget_mc4wp_form_widget ${
+          isFormSubmitted ? "active" : ""
+        }`}
       >
         {!isFormSubmitted ? (
           // Render the form if not submitted
@@ -93,9 +96,7 @@ function Sidebar3({ headingText, withoutsticky, provider_name }) {
             <div className="title">Open Free Account</div>
             <form
               id="mc4wp-form-1"
-              className={`mc4wp-form mc4wp-form-27048 ${
-                isFormSubmitted ? "active" : ""
-              }`}
+              className="mc4wp-form mc4wp-form-27048"
               onSubmit={handleSubmit}
             >
               <div className="mc4wp-form-fields">
