@@ -5,3 +5,7 @@
   flex-direction: column;
   justify-content: center;
 }
+.widget.widget_mc4wp_form_widget.active {
+  background-color: unset !important;
+  color: #fff;
+}

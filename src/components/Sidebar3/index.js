@@ -93,7 +93,9 @@ function Sidebar3({ headingText, withoutsticky, provider_name }) {
             <div className="title">Open Free Account</div>
             <form
               id="mc4wp-form-1"
-              className="mc4wp-form mc4wp-form-27048"
+              className={`mc4wp-form mc4wp-form-27048 ${
+                isFormSubmitted ? "active" : ""
+              }`}
               onSubmit={handleSubmit}
             >
               <div className="mc4wp-form-fields">
