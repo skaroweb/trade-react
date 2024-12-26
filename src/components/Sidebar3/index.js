@@ -65,11 +65,15 @@ function Sidebar3({ headingText, withoutsticky, provider_name }) {
           Authorization: `Bearer ${token}`, // Include the Bearer token
         },
       });
+      if (response.status === 201) {
+        console.log("Success:", response.data);
 
-      console.log("Success:", response.data);
-
-      // Hide form and show success message
-      setIsFormSubmitted(true);
+        // Update the state only if the status is 201
+        setIsFormSubmitted(true);
+      } else {
+        console.error("Unexpected status code:", response.status);
+        // Optionally handle non-201 status codes here
+      }
     } catch (error) {
       console.error("Error submitting form:", error.message);
       alert(error.response?.data?.message || "An unexpected error occurred.");
