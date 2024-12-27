@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Table, Container, Form, Pagination, Button } from "react-bootstrap";
+import {
+  Table,
+  Container,
+  Form,
+  Pagination,
+  Button,
+  Modal,
+} from "react-bootstrap";
 import styled from "styled-components";
 import * as XLSX from "xlsx"; // Import the XLSX library
 import "./index.css";
@@ -59,9 +66,11 @@ const Report = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10; // Number of items per page
   const [sortConfig, setSortConfig] = useState({
-    key: "Firstname",
-    direction: "ascending",
+    key: "createdAt", // Default sorting by "createdAt"
+    direction: "descending", // Most recent first
   });
+  const [showModal, setShowModal] = useState(false); // State to control modal visibility
+  const [userIdToDelete, setUserIdToDelete] = useState(null); // Store user ID to delete
   const apiUrl = process.env.REACT_APP_PUBLIC_URL;
 
   useEffect(() => {
@@ -104,6 +113,7 @@ const Report = () => {
   // Sorting logic
   const requestSort = (key) => {
     let direction = "ascending";
+    // If already sorted by the same key, toggle the direction
     if (sortConfig.key === key && sortConfig.direction === "ascending") {
       direction = "descending";
     }
@@ -112,7 +122,16 @@ const Report = () => {
 
   const sortedUsers = React.useMemo(() => {
     let sortableUsers = [...filteredUsers];
-    if (sortConfig !== null) {
+
+    // If sorting by "createdAt", ensure the default behavior is descending (most recent first)
+    if (sortConfig.key === "createdAt") {
+      sortableUsers.sort((a, b) => {
+        return sortConfig.direction === "ascending"
+          ? new Date(a.createdAt) - new Date(b.createdAt)
+          : new Date(b.createdAt) - new Date(a.createdAt);
+      });
+    } else {
+      // Sort alphabetically by the selected key (e.g., Firstname, Lastname, etc.)
       sortableUsers.sort((a, b) => {
         if (a[sortConfig.key] < b[sortConfig.key]) {
           return sortConfig.direction === "ascending" ? -1 : 1;
@@ -123,10 +142,12 @@ const Report = () => {
         return 0;
       });
     }
+
     return sortableUsers;
   }, [filteredUsers, sortConfig]);
 
   const totalPages = Math.ceil(sortedUsers.length / itemsPerPage);
+
   const displayedUsers = sortedUsers.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
@@ -150,6 +171,11 @@ const Report = () => {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+  // Format "Created At" date for frontend
+  const formatDate = (dateString) => {
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    return new Date(dateString).toLocaleDateString("en-US", options);
+  };
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
@@ -158,12 +184,12 @@ const Report = () => {
   const handleExportToExcel = () => {
     // Prepare the data
     const exportData = filteredUsers.map((user) => ({
+      createdAt: formatDate(user.createdAt),
+      IpAddress: user.IpAddress,
       Firstname: user.Firstname,
       Lastname: user.Lastname,
       Email: user.Email,
       Phone: user.phone,
-      Country: user.countryName,
-      Promotions: user.promotions ? "Yes" : "No",
     }));
 
     // Create a new workbook
@@ -173,6 +199,26 @@ const Report = () => {
 
     // Export the workbook to a file
     XLSX.writeFile(workbook, "UsersReport.xlsx");
+  };
+
+  const handleRemoveUser = async () => {
+    try {
+      await axios.delete(`${apiUrl}/api/users/${userIdToDelete}`, {
+        headers: {
+          Authorization: `Bearer wIz@rd_Adm1n_T0k3n!2024`,
+        },
+      });
+      setUsers(users.filter((user) => user._id !== userIdToDelete)); // Update state to remove the user
+      setShowModal(false); // Close modal after deleting
+    } catch (err) {
+      setError(err.response ? err.response.data : "Error deleting user");
+      setShowModal(false); // Close modal even if there's an error
+    }
+  };
+
+  const showConfirmationModal = (userId) => {
+    setUserIdToDelete(userId);
+    setShowModal(true); // Show confirmation modal
   };
 
   return (
@@ -188,7 +234,7 @@ const Report = () => {
       </Container>
       <Container className="my-4">
         <FilterRow className="FilterRow">
-          <FilterGroup>
+          <FilterGroup className="FilterRowflex">
             <Form.Label>Search</Form.Label>
             <Form.Control
               type="text"
@@ -199,7 +245,7 @@ const Report = () => {
             />
           </FilterGroup>
 
-          <FilterGroup>
+          {/* <FilterGroup>
             <Form.Label>Filter by Country</Form.Label>
             <Form.Select
               name="country"
@@ -215,9 +261,9 @@ const Report = () => {
                   </option>
                 ))}
             </Form.Select>
-          </FilterGroup>
+          </FilterGroup> */}
 
-          <FilterGroup>
+          {/* <FilterGroup>
             <Form.Label>Filter by Promotions</Form.Label>
             <Form.Select
               name="promotions"
@@ -228,18 +274,20 @@ const Report = () => {
               <option value="yes">Has Promotions</option>
               <option value="no">No Promotions</option>
             </Form.Select>
-          </FilterGroup>
+          </FilterGroup> */}
           <FilterGroup>
-            <Button className="btn btn-dark w-100" onClick={handleClearFilters}>
+            <Button className="btn btn-dark" onClick={handleClearFilters}>
               Clear Filters
             </Button>
           </FilterGroup>
         </FilterRow>
 
         <div className="tableoverflow">
-          <AnimatedTable bordered hover variant="light">
+          <AnimatedTable className="tableline" bordered hover variant="light">
             <thead style={{ backgroundColor: "white", color: "#28a745" }}>
               <tr>
+                <th>Created At</th>
+                <th>IP Address</th>
                 <th
                   onClick={() => requestSort("Firstname")}
                   style={{ cursor: "pointer" }}
@@ -264,7 +312,8 @@ const Report = () => {
                 >
                   Phone <i className="fa fa-sort" aria-hidden="true"></i>
                 </th>
-                <th
+                <th>Action</th>
+                {/* <th
                   onClick={() => requestSort("countryName")}
                   style={{ cursor: "pointer" }}
                 >
@@ -275,18 +324,28 @@ const Report = () => {
                   style={{ cursor: "pointer" }}
                 >
                   Promotions <i className="fa fa-sort" aria-hidden="true"></i>
-                </th>
+                </th> */}
               </tr>
             </thead>
             <tbody>
               {displayedUsers.map((user) => (
                 <tr key={user._id}>
+                  <td>{formatDate(user.createdAt)}</td>
+                  <td>{user.IpAddress}</td>
                   <td>{user.Firstname}</td>
                   <td>{user.Lastname}</td>
                   <td>{user.Email}</td>
                   <td>{user.phone}</td>
-                  <td>{user.countryName}</td>
-                  <td>{user.promotions ? "Yes" : "No"}</td>
+                  <td style={{ textAlign: "center" }}>
+                    <Button
+                      className="remove_button"
+                      onClick={() => showConfirmationModal(user._id)}
+                    >
+                      Remove
+                    </Button>
+                  </td>
+                  {/* <td>{user.countryName}</td>
+                  <td>{user.promotions ? "Yes" : "No"}</td> */}
                 </tr>
               ))}
             </tbody>
@@ -306,6 +365,21 @@ const Report = () => {
           </StyledPagination>
         )}
       </Container>
+      {/* Confirmation Modal */}
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Deletion</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to delete this detail?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            No
+          </Button>
+          <Button variant="danger" onClick={handleRemoveUser}>
+            Yes, Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };
