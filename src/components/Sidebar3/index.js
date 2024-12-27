@@ -4,6 +4,8 @@ import axios from "axios";
 import "../Sidebar/index.css";
 import "./index.css";
 import PhoneInput from "react-phone-input-2";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Sidebar3({ headingText, withoutsticky, provider_name }) {
   const location = useLocation(); // Get the current location
@@ -76,7 +78,9 @@ function Sidebar3({ headingText, withoutsticky, provider_name }) {
       }
     } catch (error) {
       console.error("Error submitting form:", error.message);
-      alert(error.response?.data?.message || "An unexpected error occurred.");
+      toast.warn(
+        error.response?.data?.message || "An unexpected error occurred."
+      );
     }
   };
   console.log(isFormSubmitted);
@@ -167,6 +171,7 @@ function Sidebar3({ headingText, withoutsticky, provider_name }) {
           </div>
         )}
       </div>
+      <ToastContainer autoClose={1000} />
     </aside>
   );
 }
